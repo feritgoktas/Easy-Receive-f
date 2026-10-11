@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "deliveries": {
+      "title": "Delivery Items",
+      "description": "Hotel receiving and food safety inspection records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "uploadId": { "type": "string" },
+        "month": { "type": "string" },
+        "supplierName": { "type": "string" },
+        "supplierPhone": { "type": "string" },
+        "productName": { "type": "string" },
+        "orderQty": { "type": "number" },
+        "uom": { "type": "string" },
+        "poNumber": { "type": "string" },
+        "subject": { "type": "string" },
+        "department": { "type": "string" },
+        "expectedDate": { "type": "string" },
+        "truckCheck": { "type": "boolean" },
+        "truckTemp": { "type": "number" },
+        "labelCheck": { "type": "boolean" },
+        "physicalCheck": { "type": "boolean" },
+        "productTemp": { "type": "number" },
+        "expDate": { "type": "string" },
+        "status": { "type": "string" },
+        "note": { "type": "string" },
+        "recordedBy": { "type": "string" },
+        "recordedAt": { "type": "string" },
+        "updatedBy": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "supplierName", "productName", "expectedDate", "status"]
+    },
+    "upload_batches": {
+      "title": "Upload Batch History",
+      "description": "Audit and rollback history of uploaded files and bulk delivery lists",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fileName": { "type": "string" },
+        "uploadedAt": { "type": "string" },
+        "timestamp": { "type": "number" },
+        "uploadedBy": { "type": "string" },
+        "userId": { "type": "string" },
+        "itemCount": { "type": "number" },
+        "itemIds": { "type": "array" },
+        "targetMonths": { "type": "array" },
+        "suppliersSummary": { "type": "string" },
+        "isReverted": { "type": "boolean" }
+      },
+      "required": ["id", "fileName", "uploadedAt", "itemCount"]
+    },
+    "settings": {
+      "title": "Application Settings",
+      "description": "App-wide preferences, supplier emails and temperature checking rules",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "company": { "type": "string" },
+        "language": { "type": "string" },
+        "supplierEmails": { "type": "object" },
+        "supplierPhones": { "type": "object" },
+        "supplierRules": { "type": "object" },
+        "extraCheckProducts": { "type": "array" }
+      }
+    }
+  },
+  "firestore": {
+    "/deliveries/{deliveryId}": {
+      "schema": "deliveries",
+      "description": "Real-time stream of incoming delivery items"
+    },
+    "/upload_history/{uploadId}": {
+      "schema": "upload_batches",
+      "description": "Last upload sessions for inspection and batch rollback"
+    },
+    "/settings/{settingId}": {
+      "schema": "settings",
+      "description": "Global application preferences"
+    }
+  }
+}

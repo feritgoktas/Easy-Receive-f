@@ -1,0 +1,6 @@
+{
+  "name": "Receiving Easy",
+  "description": "Otel mal kabul ve günlük gıda giriş kontrol uygulaması. Web ve Android uyumlu, PDF kontrol listesi, sıcaklık ve SKT takibi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

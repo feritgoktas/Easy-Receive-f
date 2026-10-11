@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Multi-hotel collections and root documents
+    match /{document=**} {
+      allow read, write: if true;
+    }
+    
+    // Explicit hotel tenant documents
+    match /hotels/{hotelId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+
+    // Deliveries & monthly archives
+    match /months/{monthId} {
+      allow read, write: if true;
+    }
+    
+    // Settings & Upload history per hotel
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+  }
+}
+
+
